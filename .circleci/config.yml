@@ -33,7 +33,7 @@ jobs:
       - run: return 1
 
       - run:
-          name: Upload Failed Tests
+          name: In thong bao loi
           command: echo "fail ne"
           when: on_fail
       
