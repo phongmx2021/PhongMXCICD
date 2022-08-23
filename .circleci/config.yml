@@ -12,9 +12,9 @@ jobs:
             echo "text to output here" > workspace/echo-output/output.txt
 
       - persist_to_workspace:
-          root: workspace     # relative path to our working directory
+          root: workspace/echo-output     # relative path to our working directory
           paths:      # file globs which will be persisted to the workspace
-           - echo-output
+           - output.txt
   
   read:
     docker:
@@ -23,9 +23,9 @@ jobs:
       - run:
           name: "read text from file"
           command: |
-            cat output.txt
+            cat /workspace/echo-output/output.txt
       - attach_workspace:
-          at: /tmp/workspace/echo-output
+          at: /workspace/echo-output/
 
 workflows:
   test-env-vars:
