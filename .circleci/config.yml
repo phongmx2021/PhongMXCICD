@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  save:
+  save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
@@ -12,7 +12,7 @@ jobs:
           paths:
             - output.txt
   
-  read:
+  print_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
@@ -20,10 +20,9 @@ jobs:
           at: ~/
       - run: cat ~/output.txt
       
-
 workflows:
-  test-env-vars:
+  my_workflow:
     jobs:
-      - save
-      - read
+      - save_hello_world_output
+      - print_output_file
 
