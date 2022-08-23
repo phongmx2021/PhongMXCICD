@@ -19,12 +19,13 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run:
-          name: "read text from file"
-          command: |
-            cat ~/output.txt
       - attach_workspace:
           at: ~/
+      - run:
+          name: "read text from file"
+          command:
+            cat ~/output.txt
+      
 
 workflows:
   test-env-vars:
