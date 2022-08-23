@@ -1,25 +1,27 @@
 version: 2.1
 
+jobs:
+  save:
+    docker:
+      - image: ubuntu:14.04
+    steps:
+      - run:
+          name: "save text to file"
+          command: |
+            echo "text to output here" > output.txt
+  
+  read:
+    docker:
+      - image: ubuntu:14.04
+    steps:
+      - run:
+          name: "read text from file"
+          command: |
+            cat output.txt
+
 workflows:
   test-env-vars:
     jobs:
-      - build
+      - save
+      - read
 
-jobs:
-  build:
-    docker:
-      - image: cimg/base:2021.11
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - checkout
-      - run:
-          name: "echo an env var that is part of our project"
-          command: |
-            echo "text to output here" > output.txt
-           # save the files your deploy step needs
-      - persist_to_workspace:
-          root: .     # relative path to our working directory
-          paths:      # file globs which will be persisted to the workspace
-           - rand_*
