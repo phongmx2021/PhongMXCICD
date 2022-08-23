@@ -1,5 +1,15 @@
 version: 2.1
 
+commands:
+  print_pipeline_id:
+    description: "print ci_ID"
+    parameters:
+      to:
+        type: string
+        default: "Hello World"
+    steps:
+      - run: echo $CIRCLE_WORKFLOW_ID
+
 jobs:
   save_hello_world_output:
     docker:
@@ -18,6 +28,8 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
+      - print_pipeline_id:
+          to: "PhongMX"
       
 workflows:
   my_workflow:
