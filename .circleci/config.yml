@@ -3,29 +3,28 @@ version: 2.1
 jobs:
   save:
     docker:
-      - image: ubuntu:14.04
+      - image: circleci/node:13.8.0
     steps:
-      - run: mkdir -p workspace
       - run:
           name: "save text to file"
           command: |
-            echo "text to output here" > workspace/echo-output/output.txt
+            echo "text to output here" > ~/output.txt
 
       - persist_to_workspace:
-          root: workspace/echo-output     # relative path to our working directory
+          root: ~/     # relative path to our working directory
           paths:      # file globs which will be persisted to the workspace
            - output.txt
   
   read:
     docker:
-      - image: ubuntu:14.04
+      - image: circleci/node:13.8.0
     steps:
       - run:
           name: "read text from file"
           command: |
-            cat /workspace/echo-output/output.txt
+            cat /~//output.txt
       - attach_workspace:
-          at: /workspace/echo-output/
+          at: ~/
 
 workflows:
   test-env-vars:
