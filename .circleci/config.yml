@@ -9,6 +9,11 @@ jobs:
           name: "save text to file"
           command: |
             echo "text to output here" > output.txt
+
+      - persist_to_workspace:
+          root: .     # relative path to our working directory
+          paths:      # file globs which will be persisted to the workspace
+           - rand_*
   
   read:
     docker:
@@ -18,6 +23,8 @@ jobs:
           name: "read text from file"
           command: |
             cat output.txt
+      - attach_workspace:
+          at: /tmp/workspace
 
 workflows:
   test-env-vars:
