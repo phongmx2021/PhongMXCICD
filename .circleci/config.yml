@@ -30,6 +30,12 @@ jobs:
       - run: cat ~/output.txt
       - print_pipeline_id:
           to: "PhongMX"
+      - run: return 1
+
+      - run:
+          name: Upload Failed Tests
+          command: echo "fail ne"
+          when: on_fail
       
 workflows:
   my_workflow:
