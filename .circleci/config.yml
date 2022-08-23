@@ -8,9 +8,9 @@ jobs:
       - run: echo "hello world" > ~/output.txt
 
       - persist_to_workspace:
-          root: ~/     # relative path to our working directory
-          paths:      # file globs which will be persisted to the workspace
-           - output.txt
+          root: ~/
+          paths:
+            - output.txt
   
   read:
     docker:
