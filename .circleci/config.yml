@@ -25,7 +25,7 @@ jobs:
           command: |
             cat output.txt
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp/workspace/echo-output
 
 workflows:
   test-env-vars:
