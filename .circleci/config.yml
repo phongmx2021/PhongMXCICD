@@ -13,7 +13,7 @@ jobs:
       - persist_to_workspace:
           root: .     # relative path to our working directory
           paths:      # file globs which will be persisted to the workspace
-           - rand_*
+           - .
   
   read:
     docker:
@@ -24,7 +24,7 @@ jobs:
           command: |
             cat output.txt
       - attach_workspace:
-          at: /tmp/workspace
+          at: .
 
 workflows:
   test-env-vars:
