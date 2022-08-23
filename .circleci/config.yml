@@ -22,7 +22,7 @@ jobs:
       - run:
           name: "read text from file"
           command: |
-            cat /~//output.txt
+            cat ~/output.txt
       - attach_workspace:
           at: ~/
 
